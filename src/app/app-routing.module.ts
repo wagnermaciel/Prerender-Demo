@@ -4,6 +4,7 @@ import { PokedexComponent } from './pokedex.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/1', pathMatch: 'full' },
+  { path: '1', pathMatch: 'full', component: PokedexComponent },
   { path: '**', component: PokedexComponent },
 ];
 

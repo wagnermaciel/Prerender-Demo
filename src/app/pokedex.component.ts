@@ -1,25 +1,20 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Pokeapi } from './pokeapi.service';
 
 @Component({
   selector: 'pokedex',
   template: `
-  <ng-container *ngIf="pokemonObservable | async as pokemon">
+    <h1>Temtem!</h1>
     <h1>{{ pokemon.name }}</h1>
-    <ng-container *ngFor="let type of pokemon.types">
-      <h2>{{ type.type.name }}</h2>
-    </ng-container>
-    <img src="{{ pokemon.sprites.front_default }}">
-  </ng-container>
+    <img src="{{ pokemon.img }}">
   `,
   styles: [],
 })
 export class PokedexComponent {
-  pokemonObservable: Observable<any>;
-  constructor(http: HttpClient, router: Router) {
-    const baseUrl = 'https://pokeapi.co/api/v2/pokemon';
-    this.pokemonObservable = http.get(baseUrl + router.url);
+  pokemon: any;
+  constructor(private pokeapi: Pokeapi, router: Router) {
+    const pokeId = router.url.replace(/\//g, ''); // Remove slashes from url.
+    this.pokemon = pokeapi.getPokemon(pokeId);
   }
 }

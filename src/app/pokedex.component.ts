@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   template: `
   <ng-container *ngIf="pokemonObservable | async as pokemon">
     <h1>{{ pokemon.name }}</h1>
+    <ng-container *ngFor="let type of pokemon.types">
+      <h2>{{ type.type.name }}</h2>
+    </ng-container>
     <img src="{{ pokemon.sprites.front_default }}">
   </ng-container>
   `,

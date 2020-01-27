@@ -12,7 +12,7 @@ import { PokedexComponent } from './pokedex.component';
     PokedexComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
   ],
